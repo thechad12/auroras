@@ -30,6 +30,8 @@ figure = createMapBox(data,"latitudes","longitudes",["probability"],["fuchsia"],
 app = dash.Dash(__name__,external_stylesheets=STYLESHEETS)
 app.layout = dhtml.Div(children=[
 		dhtml.H1(children='Aurora Map'),
+		dhtml.H4(children='Global map of probable auroras at this moment in time.'),
+		dhtml.H6(children='Gathering data from auroras.live'),
 		dcc.Graph(id='aurora-map',
 			figure=figure)
 		])
