@@ -26,7 +26,7 @@ def createMapBox(data: Any,lat: float,lon: float,hoverData: List[str],colorSeque
 	figure.update_layout(mapbox_style=style)
 	return figure
 
-figure = createMapBox(data,"latitudes","longitudes",["probability","color"],["fuchsia"],0,1080,"carto-darkmatter")
+figure = createMapBox(data,"latitudes","longitudes",["probability"],["fuchsia"],0,1080,"carto-darkmatter")
 app = dash.Dash(__name__,external_stylesheets=STYLESHEETS)
 app.layout = dhtml.Div(children=[
 		dhtml.H1(children='Aurora Map'),

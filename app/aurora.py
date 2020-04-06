@@ -63,7 +63,6 @@ class AuroraCall:
 		data["latitudes"] = []
 		data["longitudes"] = []
 		data["probability"] = []
-		data["color"] = []
 		jsonData = self.getAuroraLocations()
 		for key,value in jsonData.items():
 			try:
@@ -71,11 +70,12 @@ class AuroraCall:
 				longitude = value["long"]
 				name = value["name"]
 				localJsonData = self.getLocalForecast(latitude,longitude)
-				data["locations"].append(name)
-				data["latitudes"].append(latitude)
-				data["longitudes"].append(longitude)
-				data["probability"].append(localJsonData["probability"]["calculated"]["value"])
-				data["color"].append(localJsonData["probability"]["calculated"]["color"])
+				probability = localJsonData["probability"]["calculated"]["value"]
+				if probability != None and int(probability) > 0:
+					data["locations"].append(name)
+					data["latitudes"].append(latitude)
+					data["longitudes"].append(longitude)
+					data["probability"].append(float(probability))
 			except:
 				continue
 		return json.dumps(data)
